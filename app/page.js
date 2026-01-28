@@ -1,20 +1,14 @@
-import Navbar from './components/Navbar';
+import Nosotros from './components/Nosotros';
 import Servicios from './components/Servicios';
 import Proyectos from './components/Proyectos';
 import Contacto from './components/Contacto';
-import Footer from './components/Footer';
-import WhatsAppButton from './components/WhatsAppButton';
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col overflow-x-hidden bg-black">
-      <Navbar />
-      <WhatsAppButton />
-
+    <div className="overflow-x-hidden bg-black">
+      
       {/* Hero: Pantalla completa */}
       <header className="relative h-screen min-h-175 flex flex-col justify-end overflow-hidden">
-        
-        {/* 1. VIDEO DE RELLENO (Cover + Blur) */}
         <video
           autoPlay
           loop
@@ -25,7 +19,6 @@ export default function Home() {
           <source src="/promo-video.mp4" type="video/mp4" />
         </video>
 
-        {/* 2. VIDEO NÍTIDO (Contain - Solo para móviles) */}
         <div className="absolute inset-0 flex items-center justify-center sm:hidden">
             <video
               autoPlay
@@ -40,9 +33,7 @@ export default function Home() {
 
         <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-black/40"></div>
 
-        {/* Contenido adaptable */}
         <div className="relative z-10 text-center w-full px-4 sm:px-6 pb-10 sm:pb-16 lg:pb-20 max-w-5xl mx-auto flex flex-col items-center gap-5">
-          
           <p className="text-sm sm:text-lg md:text-xl lg:text-2xl text-white font-light max-w-3xl mx-auto leading-relaxed opacity-90 drop-shadow-2xl">
             Soluciones digitales profesionales, rápidas y personalizadas para tu negocio
           </p>
@@ -59,17 +50,15 @@ export default function Home() {
           >
             Cotiza tu proyecto ahora →
           </a>
-          
         </div>
       </header>
 
-      <main className="grow w-full bg-white">
+      <main className="w-full bg-white">
+        <Nosotros /> 
         <Servicios />
         <Proyectos />
         <Contacto />
       </main>
-
-      <Footer />
     </div>
   );
 }
