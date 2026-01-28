@@ -30,7 +30,7 @@ export default function Footer() {
           {/* Iconos de redes */}
           <div className="flex items-center gap-12 md:gap-16">
             <a
-              href="https://www.instagram.com/"
+              href="https://www.instagram.com/unchained_code/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-300 hover:text-secondary transition-all duration-300 transform hover:scale-125"
