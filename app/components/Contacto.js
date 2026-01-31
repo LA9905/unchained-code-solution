@@ -22,10 +22,12 @@ export default function Contacto() {
       // --- CÓDIGO DE CONVERSIÓN DE GOOGLE ADS ---
       if (typeof window !== 'undefined' && window.gtag) {
         window.gtag('event', 'conversion', {
-          'send_to': 'AW-17919239597/YvvnCP2M9u8bEK3Lx-BC',
+          'send_to': 'AW-17919239597/YvvnCP2M9u8bEK3Lx-BC', // ID
+          'value': 1.0, // Valor simbólico para el algoritmo
+          'currency': 'CLP' // Moneda
         });
       }
-      // ------------------------------------------
+      // ------------------------------------------------------
       
       setIsSent(true);
       setIsSubmitting(false);
