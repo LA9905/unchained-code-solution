@@ -12,7 +12,6 @@ export default function Contacto() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // variables de entorno
     emailjs.sendForm(
       process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
       process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
@@ -20,6 +19,14 @@ export default function Contacto() {
       process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
     )
     .then(() => {
+      // --- CÓDIGO DE CONVERSIÓN DE GOOGLE ADS ---
+      if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', 'conversion', {
+          'send_to': 'AW-17919239597/YvvnCP2M9u8bEK3Lx-BC',
+        });
+      }
+      // ------------------------------------------
+      
       setIsSent(true);
       setIsSubmitting(false);
       form.current.reset();
@@ -42,7 +49,6 @@ export default function Contacto() {
         </div>
         
         <div className="max-w-2xl mx-auto bg-white p-8 md:p-10 rounded-3xl shadow-xl border border-gray-100 min-h-100 flex flex-col justify-center">
-          
           {!isSent ? (
             <form ref={form} onSubmit={sendEmail} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -56,7 +62,6 @@ export default function Contacto() {
                     required 
                   />
                 </div>
-
                 <div>
                   <label className="block text-sm font-bold text-gray-700 mb-2 ml-1">Email</label>
                   <input 
@@ -68,7 +73,6 @@ export default function Contacto() {
                   />
                 </div>
               </div>
-
               <div>
                 <label className="block text-sm font-bold text-gray-700 mb-2 ml-1">Mensaje</label>
                 <textarea 
@@ -78,7 +82,6 @@ export default function Contacto() {
                   required 
                 />
               </div>
-
               <button 
                 type="submit" 
                 disabled={isSubmitting}
