@@ -54,6 +54,15 @@ const contentData = {
   }
 };
 
+export async function generateStaticParams() {
+  return [
+    { id: 'web' },
+    { id: 'ecommerce' },
+    { id: 'apis' },
+    { id: 'apps' },
+  ];
+}
+
 export default function ServicioDetalle() {
   const { id } = useParams();
   const data = contentData[id];
