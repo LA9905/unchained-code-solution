@@ -1,4 +1,5 @@
 'use client';
+export const dynamic = 'force-static';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { 
@@ -53,15 +54,6 @@ const contentData = {
     img: '/APPS.webp'
   }
 };
-
-export async function generateStaticParams() {
-  return [
-    { id: 'web' },
-    { id: 'ecommerce' },
-    { id: 'apis' },
-    { id: 'apps' },
-  ];
-}
 
 export default function ServicioDetalle() {
   const { id } = useParams();
