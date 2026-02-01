@@ -1,4 +1,4 @@
-import { FaInstagram, FaLinkedin, FaGithub } from 'react-icons/fa';
+import { FaInstagram, FaFacebook, FaLinkedin, FaGithub } from 'react-icons/fa';
 import Image from 'next/image';
 
 export default function Footer() {
@@ -37,6 +37,16 @@ export default function Footer() {
               aria-label="Instagram"
             >
               <FaInstagram className="h-9 w-9 md:h-10 md:w-10" />
+            </a>
+
+            <a
+              href="https://www.facebook.com/profile.php?id=61587132366963"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-300 hover:text-secondary transition-all duration-300 transform hover:scale-125"
+              aria-label="Facebook"
+            >
+              <FaFacebook className="h-9 w-9 md:h-10 md:w-10" />
             </a>
 
             <a

@@ -2,6 +2,7 @@ import Nosotros from './components/Nosotros';
 import Servicios from './components/Servicios';
 import Proyectos from './components/Proyectos';
 import Contacto from './components/Contacto';
+import SocialBanner from './components/SocialBanner';
 
 export default function Home() {
   return (
@@ -57,6 +58,7 @@ export default function Home() {
         <Nosotros /> 
         <Servicios />
         <Proyectos />
+        <SocialBanner />
         <Contacto />
       </main>
     </div>
