@@ -33,7 +33,6 @@ export default function Navbar() {
     return pathname === '/' ? anchor : `/${anchor}`;
   };
 
-  // Iconos sociales
   const SocialIcons = ({ className = "" }) => (
     <div className={`flex items-center gap-5 ${className}`}>
       <a
@@ -67,15 +66,15 @@ export default function Navbar() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20 md:h-24">
-            <Link href="/" className="flex items-center py-2">
+          <div className="flex justify-between items-center h-24 md:h-28 lg:h-32 transition-all duration-300">
+            <Link href="/" className="flex items-center">
               <Image
-                src="/logo_unchained.svg"
+                src="/logo_transparent.svg"
                 alt="Unchained Code Solution Logo"
-                width={300}
-                height={90}
+                width={400}
+                height={120} 
                 priority
-                className="h-14 md:h-18 lg:h-20 w-auto object-contain"
+                className="h-20 w-auto md:h-24 lg:h-28 object-contain transition-transform duration-300 hover:scale-105"
               />
             </Link>
 
@@ -96,7 +95,6 @@ export default function Navbar() {
                 </Link>
               </div>
               
-              {/* Redes en Desktop */}
               <SocialIcons />
             </div>
 
@@ -130,7 +128,8 @@ export default function Navbar() {
         >
           <div className="flex justify-between items-center p-6 border-b border-white/10">
             <Link href="/" onClick={() => setIsMenuOpen(false)}>
-              <Image src="/logo_unchained.svg" alt="Logo" width={180} height={50} className="h-12 w-auto" />
+              {/* Logo en móvi */}
+              <Image src="/logo_transparent.svg" alt="Logo" width={200} height={60} className="h-16 w-auto object-contain" />
             </Link>
             <button onClick={() => setIsMenuOpen(false)}><XMarkIcon className="h-8 w-8 text-white" /></button>
           </div>
@@ -142,7 +141,6 @@ export default function Navbar() {
             <Link href={getLinkHref('#contacto')} onClick={() => setIsMenuOpen(false)}>Contacto</Link>
           </div>
 
-          {/* Redes en Móvil (al final del menú) */}
           <div className="p-8 border-t border-white/10 bg-black/20">
             <p className="text-white/60 text-sm mb-4 font-semibold uppercase tracking-widest">Nuestras Redes</p>
             <SocialIcons className="justify-start gap-8" />
