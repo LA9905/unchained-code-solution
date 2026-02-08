@@ -29,12 +29,21 @@ export default function Navbar() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  // Bloquear scroll cuando el menú esté abierto
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [isMenuOpen]);
+
   const getLinkHref = (anchor) => {
     return pathname === '/' ? anchor : `/${anchor}`;
   };
 
-  const SocialIcons = ({ className = "" }) => (
-    <div className={`flex items-center gap-5 ${className}`}>
+  const SocialIcons = ({ className = "", animated = false }) => (
+    <div className={`flex items-center gap-5 ${className} ${animated && isMenuOpen ? 'opacity-100 translate-y-0' : animated ? 'opacity-0 translate-y-10' : ''} transition-all duration-700 delay-[500ms]`}>
       <a
         href="https://www.instagram.com/unchained_code/"
         target="_blank"
@@ -63,10 +72,10 @@ export default function Navbar() {
           isSticky
             ? 'bg-white/95 backdrop-blur-md shadow-xl text-gray-900'
             : 'bg-primary/90 shadow-md text-white'
-        }`}
+        } ${isMenuOpen ? 'opacity-0 md:opacity-100 pointer-events-none md:pointer-events-auto' : 'opacity-100'}`} 
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="flex justify-between items-center h-24 md:h-28 lg:h-32 transition-all duration-300">
+          <div className="flex justify-between items-center h-24 md:h-28 lg:h-32">
             <Link href="/" className="flex items-center">
               <Image
                 src="/logo_transparent.svg"
@@ -78,7 +87,6 @@ export default function Navbar() {
               />
             </Link>
 
-            {/* Menú Desktop */}
             <div className="hidden md:flex items-center space-x-8">
               <div className="flex space-x-8 border-r border-gray-300/30 pr-8">
                 <Link href={getLinkHref('#nosotros')} className="hover:text-secondary transition-colors font-semibold text-lg">
@@ -94,20 +102,15 @@ export default function Navbar() {
                   Contacto
                 </Link>
               </div>
-              
               <SocialIcons />
             </div>
 
             <button
               className="md:hidden focus:outline-none"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              onClick={() => setIsMenuOpen(true)}
               aria-label="Abrir menú"
             >
-              {isMenuOpen ? (
-                <XMarkIcon className={`h-9 w-9 ${isSticky ? 'text-gray-900' : 'text-white'}`} />
-              ) : (
-                <Bars3Icon className={`h-9 w-9 ${isSticky ? 'text-gray-900' : 'text-white'}`} />
-              )}
+              <Bars3Icon className={`h-9 w-9 ${isSticky ? 'text-gray-900' : 'text-white'}`} />
             </button>
           </div>
         </div>
@@ -115,35 +118,49 @@ export default function Navbar() {
 
       {/* Menú Móvil */}
       <div
-        className={`fixed inset-0 bg-black/80 backdrop-blur-sm z-40 transition-opacity duration-300 md:hidden ${
-          isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        className={`fixed inset-0 bg-black/95 backdrop-blur-md z-[60] transition-all duration-500 md:hidden ${
+          isMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'
         }`}
-        onClick={() => setIsMenuOpen(false)}
       >
-        <div
-          className={`absolute top-0 right-0 w-3/4 max-w-xs h-full bg-primary/95 shadow-2xl transform transition-transform duration-300 flex flex-col ${
-            isMenuOpen ? 'translate-x-0' : 'translate-x-full'
-          }`}
-          onClick={(e) => e.stopPropagation()}
-        >
-          <div className="flex justify-between items-center p-6 border-b border-white/10">
+        <div className="flex flex-col h-full">
+          <div className="flex justify-between items-center p-8 border-b border-white/10">
             <Link href="/" onClick={() => setIsMenuOpen(false)}>
-              {/* Logo en móvi */}
               <Image src="/logo_transparent.svg" alt="Logo" width={200} height={60} className="h-16 w-auto object-contain" />
             </Link>
-            <button onClick={() => setIsMenuOpen(false)}><XMarkIcon className="h-8 w-8 text-white" /></button>
+            <button 
+              onClick={() => setIsMenuOpen(false)}
+              className="p-2 hover:bg-white/10 rounded-full transition-colors"
+            >
+              <XMarkIcon className="h-10 w-10 text-white" />
+            </button>
           </div>
 
-          <div className="flex flex-col p-6 space-y-8 text-white text-xl font-medium grow">
-            <Link href={getLinkHref('#nosotros')} onClick={() => setIsMenuOpen(false)}>Quiénes Somos</Link>
-            <Link href={getLinkHref('#servicios')} onClick={() => setIsMenuOpen(false)}>Servicios</Link>
-            <Link href={getLinkHref('#proyectos')} onClick={() => setIsMenuOpen(false)}>Proyectos</Link>
-            <Link href={getLinkHref('#contacto')} onClick={() => setIsMenuOpen(false)}>Contacto</Link>
+          {/* Enlaces con animación Staggered */}
+          <div className="flex flex-col p-10 space-y-10 text-white text-2xl font-semibold grow">
+            {[
+              { name: 'Quiénes Somos', href: '#nosotros', delay: 'delay-100' },
+              { name: 'Servicios', href: '#servicios', delay: 'delay-200' },
+              { name: 'Proyectos', href: '#proyectos', delay: 'delay-300' },
+              { name: 'Contacto', href: '#contacto', delay: 'delay-[400ms]' },
+            ].map((link, index) => (
+              <Link
+                key={index}
+                href={getLinkHref(link.href)}
+                onClick={() => setIsMenuOpen(false)}
+                className={`hover:text-cyan-400 transition-all duration-500 transform ${
+                  isMenuOpen ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'
+                } ${link.delay}`}
+              >
+                {link.name}
+              </Link>
+            ))}
           </div>
 
-          <div className="p-8 border-t border-white/10 bg-black/20">
-            <p className="text-white/60 text-sm mb-4 font-semibold uppercase tracking-widest">Nuestras Redes</p>
-            <SocialIcons className="justify-start gap-8" />
+          <div className="p-10 border-t border-white/10 bg-black/40">
+            <p className={`text-white/50 text-xs mb-6 font-bold uppercase tracking-[0.2em] transition-all duration-700 delay-[450ms] ${isMenuOpen ? 'opacity-100' : 'opacity-0 translate-y-5'}`}>
+              Conecta con nosotros
+            </p>
+            <SocialIcons className="justify-start gap-10" animated={true} />
           </div>
         </div>
       </div>
