@@ -17,6 +17,7 @@ const contentData = {
       { name: 'TypeScript', icon: <SiTypescript />, desc: 'Garantiza una arquitectura de software impecable, minimizando errores y facilitando futuras actualizaciones.' }
     ],
     metodologia: 'Fusionamos psicología del consumidor con desarrollo técnico. Estudiamos el comportamiento de tu audiencia para estructurar un sitio que no solo informe, sino que guíe al usuario hacia la acción de compra de manera orgánica y fluida.',
+    closingPhrase: 'No somos una agencia de "plantillas"; somos tus socios tecnológicos.',
     img: '/desarrolloweb.jpg'
   },
   'ecommerce': {
@@ -28,6 +29,7 @@ const contentData = {
       { name: 'Experiencia Fluida', icon: <FaReact />, desc: 'Checkouts rápidos y sin recargas de página que reducen drásticamente la tasa de abandono de carritos.' }
     ],
     metodologia: 'Implementamos pasarelas de pago blindadas y paneles de administración intuitivos. Diseñamos cada paso del túnel de venta para eliminar cualquier fricción que impida que el dinero llegue a tu cuenta.',
+    closingPhrase: 'No solo creamos tiendas; construimos infraestructuras de rentabilidad masiva.',
     img: '/ecommerce.jpg'
   },
   'apis': {
@@ -39,6 +41,7 @@ const contentData = {
       { name: 'Seguridad de Grado Bancario', icon: <FaShieldAlt />, desc: 'Protocolos de encriptación avanzados para que el flujo de información sensible sea impenetrable.' }
     ],
     metodologia: 'Auditamos tu flujo de trabajo actual para identificar cuellos de botella. Desarrollamos puentes de información robustos que permiten que tu empresa crezca sin necesidad de aumentar la carga administrativa manual.',
+    closingPhrase: 'Tu eficiencia operativa es nuestro código de honor; conectamos tu éxito.',
     img: '/API.png.webp'
   },
   'apps': {
@@ -50,6 +53,7 @@ const contentData = {
       { name: 'Performance Nativo', icon: <FaMobileAlt />, desc: 'Optimización de hardware (cámara, GPS, biometría) para que la app vuele en cualquier smartphone.' }
     ],
     metodologia: 'Diseñamos interfaces "Mobile-First" basadas en gestos naturales. Nos enfocamos en la retención del usuario, asegurando que tu aplicación sea tan útil e intuitiva que se convierta en parte de la rutina diaria de tu cliente.',
+    closingPhrase: 'Transformamos ideas complejas en experiencias táctiles de alto rendimiento.',
     img: '/APPS.webp'
   }
 };
@@ -106,7 +110,7 @@ export default function ServicioDetalleClient() {
         <div className="max-w-5xl mx-auto px-6 text-center relative z-10">
           <h2 className="text-4xl md:text-5xl font-bold mb-10 italic uppercase tracking-tighter">La Diferencia Unchained</h2>
           <p className="text-xl md:text-2xl text-gray-300 mb-14 leading-relaxed font-light">
-            {data.metodologia} <span className="text-white font-semibold underline decoration-cyan-500 decoration-2 underline-offset-4">No somos una agencia de "plantillas";</span> somos tus socios tecnológicos.
+            {data.metodologia} <span className="text-white font-semibold underline decoration-cyan-500 decoration-2 underline-offset-4">{data.closingPhrase}</span>
           </p>
           <Link 
             href="/#contacto" 
