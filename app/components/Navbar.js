@@ -43,7 +43,7 @@ export default function Navbar() {
   };
 
   const SocialIcons = ({ className = "", animated = false }) => (
-    <div className={`flex items-center gap-5 ${className} ${animated && isMenuOpen ? 'opacity-100 translate-y-0' : animated ? 'opacity-0 translate-y-10' : ''} transition-all duration-700 delay-[500ms]`}>
+    <div className={`flex items-center gap-5 ${className} ${animated && isMenuOpen ? 'opacity-100 translate-y-0' : animated ? 'opacity-0 translate-y-10' : ''} transition-all duration-700 delay-500ms`}>
       <a
         href="https://www.instagram.com/unchained_code/"
         target="_blank"
@@ -118,7 +118,7 @@ export default function Navbar() {
 
       {/* Menú Móvil */}
       <div
-        className={`fixed inset-0 bg-black/95 backdrop-blur-md z-[60] transition-all duration-500 md:hidden ${
+        className={`fixed inset-0 bg-black/95 backdrop-blur-md z-60 transition-all duration-500 md:hidden ${
           isMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'
         }`}
       >
@@ -157,7 +157,7 @@ export default function Navbar() {
           </div>
 
           <div className="p-10 border-t border-white/10 bg-black/40">
-            <p className={`text-white/50 text-xs mb-6 font-bold uppercase tracking-[0.2em] transition-all duration-700 delay-[450ms] ${isMenuOpen ? 'opacity-100' : 'opacity-0 translate-y-5'}`}>
+            <p className={`text-white/50 text-xs mb-6 font-bold uppercase tracking-[0.2em] transition-all duration-700 delay-450ms ${isMenuOpen ? 'opacity-100' : 'opacity-0 translate-y-5'}`}>
               Conecta con nosotros
             </p>
             <SocialIcons className="justify-start gap-10" animated={true} />
